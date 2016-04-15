@@ -1,0 +1,16 @@
+{
+  "name": "MyReactNative",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "clean:babelrc": "find ./node_modules -name react-packager -prune -o -name '.babelrc' -print | xargs rm -f",
+    "postinstall": "npm run clean:babelrc"
+  },
+  "dependencies": {
+    "react-native": "0.22",
+    "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
+    "react-native-code-push": "^1.8.0-beta",
+    "react-native-video": "^0.7.1"
+  }
+}

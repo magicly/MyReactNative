@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .container {
+            width: 500px;
+            height: 500px;
+            border: 1px dotted black;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .h50 {
+               height: 50px;
+           }
+        .w50 {
+            width: 50px;
+        }
+        .bgred {
+            background-color: red;
+        }
+        .bggreen {
+            background-color: green;
+        }
+        .bggray {
+            background-color: gray;
+        }
+        .bgyellow {
+            background-color: yellow;
+        }
+        .margin {
+            position: absolute;
+        }
+        .top {
+            border: 1px dotted red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .bottom {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .center {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .left, .right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .content {
+            border: 1px solid black;
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+   <div class="margin bgyellow">margin</div>
+   <div class="top h50 bgred">top</div>
+    <div class="center">
+        <div class="left w50 bggray">left</div>
+        <div class="content">element</div>
+        <div class="right w50 bggray">right</div>
+    </div>
+    <div class="bottom h50 bggreen">bottom</div>
+</div>
+
+</body>
+</html>
