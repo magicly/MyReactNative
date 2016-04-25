@@ -37,6 +37,7 @@
 #ifdef DEBUG
 //    jsCodeLocation = [NSURL URLWithString:@"http://119.29.118.212:10001/index.ios.bundle?platform=ios&dev=true"];
     jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
+    jsCodeLocation = [NSURL URLWithString:@"http://192.168.3.168:8081/index.ios.bundle?platform=ios&dev=true"];
 #else
     jsCodeLocation = [CodePush bundleURL];
 //    jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];

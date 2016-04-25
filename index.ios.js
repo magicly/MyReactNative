@@ -20,6 +20,12 @@ import NativeOCDemo from './components/NativeOCDemo.js';
 import MyMapView from './components/MyMap.js';
 import codePush from 'react-native-code-push';
 
+import ScenicRegion from './components/scenicRegion/index.js'
+import ScenicSpot from './components/scenicSpot/index.js'
+import Voice from './components/voice/index.js'
+import AppNavigator from './components/AppNavigator.js'
+
+
 var {
     AppRegistry,
     StyleSheet,
@@ -56,9 +62,9 @@ class AComponent extends Component {
         //}, 1000);
 
         setTimeout(() => {
-                this.setState({
-                    age: this.state.age + 1
-                })
+            this.setState({
+                age: this.state.age + 1
+            })
         }, 1000)
 
     }
@@ -107,7 +113,10 @@ class AComponent extends Component {
     }
 }
 const MyReactNative = ({name = 'unkonw'}) => {
-
+    return <AppNavigator />;
+    return <ScenicSpot />;
+    return <Voice />;
+    return <ScenicRegion />;
     return <AComponent />
     codePush.sync();
 
