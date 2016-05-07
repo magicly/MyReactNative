@@ -1,64 +1,66 @@
 'use strict';
 
-var React = require('react-native');
-var {
+const React = require('react-native');
+const {
     AppRegistry,
     StyleSheet,
     Text,
     View,
     TouchableOpacity,
-    NavigatorIOS,
+    Navigator,
     } = React;
 
 var QRCodeScreen = require('./QRCodeScreen');
 
-var CameraApp = React.createClass({
-    render: function () {
-        return (
-            <NavigatorIOS
-                style={styles.container}
-                initialRoute={{
-          title: 'Index',
-          backButtonTitle: 'Back',
-          component: Index,
-        }}
-                />
-        );
+const CameraApp = () => {
+    const renderScene = (router, navigator) => {
+        switch (router.name) {
+            case 'Index':
+                return <Index navigator={navigator}/>;
+            case 'QRCodeScreen':
+                return <QRCodeScreen
+                    onSucess={router.onSucess}
+                    cancelButtonVisible={router.cancelButtonVisibl}
+                    navigator={navigator}
+                    />;
+        }
     }
-});
+    return (
+        <Navigator
+            style={styles.container}
+            initialRoute={{
+          name: 'Index',
+        }}
+            renderScene={renderScene}
+            />
+    );
+};
 
-var Index = React.createClass({
-
-    render: function () {
-        return (
-            <View style={styles.contentContainer}>
-                <TouchableOpacity onPress={this._onPressQRCode}>
-                    <Text>Read QRCode</Text>
-                </TouchableOpacity>
-            </View>
-        );
-    },
-
-    _onPressQRCode: function () {
-        this.props.navigator.push({
-            component: QRCodeScreen,
+const Index = ({navigator}) => {
+    const onPressQRCode = () => {
+        navigator.push({
+            name: 'QRCodeScreen',
             title: 'QRCode',
-            passProps: {
-                onSucess: this._onSucess,
-                cancelButtonVisible: true,
-            },
+            onSucess: onSucess,
+            cancelButtonVisible: true,
         });
-    },
+    };
 
-    _onSucess: function (result) {
+    const onSucess = (result) => {
         console.log(result);
-    },
-
-});
+    };
+    return (
+        <View style={styles.contentContainer}>
+            <TouchableOpacity onPress={onPressQRCode}>
+                <Text>Read QRCode</Text>
+            </TouchableOpacity>
+        </View>
+    );
+};
 
 module.exports = CameraApp;
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F5FCFF',

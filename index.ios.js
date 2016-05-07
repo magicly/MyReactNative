@@ -4,16 +4,21 @@ import React, {Component} from 'react-native'
 var TabBar = require('./TabBar');
 
 import MainList from './MainList';
-import {getAnnotation} from './components/fsMap.js'
+import {WebViewExample} from './components/WebView.js'
+import {WebViewExample2} from './components/WebView2.js'
+import IndexMap from './components/index/index.js'
 import {renderVideo} from './components/Video.js';
 import VideoPlayer from './components/VideoDemo.js';
+import FlexDemo from './components/FlexDemo.js';
 import BoxDemo from './components/BoxDemo.js';
 import BoxContainer from './components/BoxDemo2.js';
 //import {examples} from './components/MapView.js';
-import {examples} from './components/GeolocationDemo.js';
+//import {examples} from './components/GeolocationDemo.js';
 import CameraDemo from './components/CameraDemo.js';
 import CameraApp from './components/QRDemo.js';
 import QRCodeScreen from './components/QRCodeScreen.js';
+import QRDemo from './components/QRDemo.js';
+import BadInstagramCloneApp from './components/BadInstagramCloneApp.js';
 
 import {NativeModules} from 'react-native';
 import NativeOCDemo from './components/NativeOCDemo.js';
@@ -24,7 +29,13 @@ import ScenicRegion from './components/scenicRegion/index.js'
 import ScenicSpot from './components/scenicSpot/index.js'
 import Voice from './components/voice/index.js'
 import AppNavigator from './components/AppNavigator.js'
+import ModalExample from './components/ModalExample.js'
+//import {examples} from './components/ModalExample2.js'
+import examples from './components/AnimateDemo.js'
+import Playground, {App} from './components/AnimateDemo2.js'
+import SwiperExample from './components/SwiperExample.js'
 
+import WebViewDemo from './components/webview/index.js';
 
 var {
     AppRegistry,
@@ -37,93 +48,38 @@ var {
 
 const {CalendarManager, CalendarSwift, MCFWriteUtil} = NativeModules;
 
-
-class AComponent extends Component {
-    // 构造
-    constructor(props) {
-        super(props);
-        // 初始状态
-        this.state = {
-            age: 10
-        };
-    }
-
-    componentWillMount() {
-        console.log('componentWillMount');
-    }
-
-    componentDidMount() {
-        console.log('componentDidMount');
-
-        //setInterval(() => {
-        //    this.setState({
-        //        age: this.state.age + 1
-        //    })
-        //}, 1000);
-
-        setTimeout(() => {
-            this.setState({
-                age: this.state.age + 1
-            })
-        }, 1000)
-
-    }
-
-    componentWillReceiveProps(nextProps) {
-        fetch('http://capi.fishsaying.com/capi/scenic/v2/54cdcb029a0b8ad439d02680?trim_empty_voices=1')
-            .then((response) => response.text())
-            .then((responseText) => {
-                console.log(responseText);
-                this.setState({
-                    result: responseText
-                })
-            })
-            .catch((error) => {
-                console.warn(error);
-            });
-        console.log('componentWillReceiveProps');
-    }
-
-    shouldComponentUpdate() {
-        console.log('shouldComponentUpdate');
-        return true;
-    }
-
-    componentWillUpdate() {
-        console.log('componentWillUpdate');
-    }
-
-    componentDidUpdate() {
-        console.log('componentDidUpdat');
-    }
-
-    componentWillUnMount() {
-        console.log('componentWillUnMount');
-    }
-
-    render() {
-        console.log('render');
-        let {name} = this.props;
-        name = !name ? 'unkonow' : name;
-        return <View style={{paddingTop: 20}}>
-            <Text>age: {this.state.age}</Text>
-            <Text>name: {this.props.name}</Text>
-            <Text>result: {this.state.result}</Text>
-        </View>;
-    }
-}
 const MyReactNative = ({name = 'unkonw'}) => {
+
+    //return <App />
+    //return <Playground />
+    //return examples[1].render();
+    //return <QRDemo />
+    //return <WebViewDemo url="http://baidu.com" />
+    //return <View>
+    //    <Text style={{margin: 20, height: 20}} onPress={() => navigator.pop()}>Back</Text>
+    //    <WebViewDemo url={router.url} navigator={navigator}/>
+    //</View>
+    //return <WebViewDemo url="https://www.baidu.com/index.html" />
     return <AppNavigator />;
+    return <FlexDemo />
+    return <BoxContainer />
+    return <BoxDemo />
+    //return <WebViewExample/>
+    return <SwiperExample />
+    return <ModalExample />
+    return renderVideo();
+    return <VideoPlayer />
+    return examples[7].render();
+    //return <BadInstagramCloneApp />
+    console.log(NativeModules)
     return <ScenicSpot />;
     return <Voice />;
     return <ScenicRegion />;
     return <AComponent />
     codePush.sync();
 
-    return <VideoPlayer />
 
     //return <BoxDemo />
-    ////return examples[0].render();
     //
     return <MyMapView
         style={{height:700}}
@@ -218,7 +174,6 @@ const MyReactNative = ({name = 'unkonw'}) => {
     //return <QRCodeScreen />
     //return <CameraApp />
     //return <CameraDemo />
-    return renderVideo();
     //return examples[0].render();
     return getAnnotation();
 };

@@ -60,6 +60,12 @@ const PureScenicRegion = ({regionName, regionImg, guideImg, spotsInfo, navigator
             style={styles.regionImg}
             source={{uri:regionImg}}
             >
+            <Text
+                style={styles.back}
+                onPress={() => navigator.pop()}
+                >
+                Back
+            </Text>
             <Text style={styles.regionName}>{regionName}</Text>
         </Image>
         <Image
@@ -163,6 +169,10 @@ class ScenicRegion extends Component {
 }
 
 const styles = StyleSheet.create({
+    back: {
+        top: 10,
+        left: 10,
+    },
     regionImg: {
         height: 300,
     },

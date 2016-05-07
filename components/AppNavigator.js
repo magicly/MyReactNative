@@ -18,7 +18,10 @@ const {
 import ScenicRegion from './scenicRegion/index.js'
 import ScenicSpot from './scenicSpot/index.js'
 import Voice from './voice/index.js'
-//var cssVar = require('cssVar');
+import IndexMap from './index/index.js'
+import MySpace from './mySpace/index.js'
+import QRCodeScreen from './QRCodeScreen.js';
+import WebViewDemo from './webview/index.js';
 
 var NavigationBarRouteMapper = {
 
@@ -49,24 +52,48 @@ var NavigationBarRouteMapper = {
 
 };
 class AppNavigator extends Component {
+    onSucess(result) {
+        console.log(result);
+    }
+
     _renderScene(router, navigator) {
         switch (router.name) {
+            case 'Index':
+                return <IndexMap navigator={navigator}/>;
+            case 'MySpace':
+                return <MySpace navigator={navigator}/>;
+            case 'QRCode':
+                return <QRCodeScreen
+                    cancelButtonVisible={true}
+                    onSucess={(data) => {
+                        navigator.replace({
+                        name: 'WebView',
+                        url: data
+                        })
+                    }}
+                    navigator={navigator}
+                    />;
+            case 'WebView':
+                console.log(router.url)
+                return <View>
+                    <Text style={{margin: 20, height: 20}} onPress={() => navigator.pop()}>Back</Text>
+                    <WebViewDemo url={router.url} navigator={navigator}/>
+                    </View>
             case 'ScenicSpot':
                 return <ScenicSpot navigator={navigator}/>;
-
             case 'ScenicRegion':
-                return <ScenicRegion navigator={navigator}/>;
+                return <ScenicRegion navigator={navigator} {...router} />;
             case 'Voice':
                 return <Voice navigator={navigator}/>;
             default:
-                return <ScenicRegion navigator={navigator}/>;
+                return <IndexMap navigator={navigator}/>;
         }
     }
 
     render() {
         return <Navigator
             style={styles.container}
-            initialRoute={{name: 'ScenicRegion'}}
+            initialRoute={{name: 'Index'}}
             renderScene={this._renderScene}
             />;
     }

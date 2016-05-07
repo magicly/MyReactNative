@@ -45,11 +45,14 @@ var QRCodeScreen = React.createClass({
         if (this.barCodeFlag) {
             this.barCodeFlag = false;
 
-            setTimeout(function () {
-                VibrationIOS.vibrate();
-                $this.props.navigator.pop();
-                $this.props.onSucess(result.data);
-            }, 1000);
+            VibrationIOS.vibrate();
+            //$this.props.navigator.pop();
+            $this.props.onSucess(result.data);
+            //$this.props.navigator.pop();
+            //$this.props.navigator.push({
+            //    name: 'Index',
+            //    url: result.data
+            //})
         }
     },
 
